@@ -133,8 +133,7 @@ class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream:
-          _firestore.collection('messages').orderBy('timestamp').snapshots(),
+      stream: _firestore.collection('messages').snapshots(),
       builder: (context, snapshot) {
         // Grab Async Snaphot, containing Query Snapshot from Firebase
         if (!snapshot.hasData) {
