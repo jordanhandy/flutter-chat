@@ -133,7 +133,8 @@ class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('messages').snapshots(),
+      stream:
+          _firestore.collection('messages').orderBy('timestamp').snapshots(),
       builder: (context, snapshot) {
         // Grab Async Snaphot, containing Query Snapshot from Firebase
         if (!snapshot.hasData) {
@@ -208,7 +209,8 @@ class MessageBubble extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Text(
                 text,
-                style: TextStyle(color: Colors.white, fontSize: 15.0),
+                style: TextStyle(
+                    color: isMe ? Colors.white : Colors.black, fontSize: 15.0),
               ),
             ),
           ),
